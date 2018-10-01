@@ -1,14 +1,14 @@
 <template>
     <section>
-        <ul>
-            <li class="shadow" v-for="(todoItem, index) in propsdata" :key="todoItem">
+        <transition-group name="list" tag="ul">
+            <li class="shadow" v-for="(todoItem, index) in propsdata" v-bind:key="todoItem">
                 <i class="checkBtn fas fa-check" aria-hidden="true"></i>
                 {{ todoItem }}
                 <span class="removeBtn" type="button" v-on:click="removeTodo(todoItem, index)">
                     <i class="far fa-trash-alt" aria-hidden="true"></i>
                 </span>
             </li>
-        </ul>
+        </transition-group>
     </section>
 </template>
 
@@ -52,6 +52,15 @@ li {
 .removeBtn {
     margin-left: auto;
     color: #de4343;
+}
+
+/* list animation style */
+.list-enter-active, .list-leave-active {
+    transition: all 1s;
+}
+.list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 </style>
